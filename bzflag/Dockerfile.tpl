@@ -19,7 +19,7 @@ CMD [ "--help" ]
 
 VOLUME [ "/opt/ioq3/baseq3" ]
 
-EXPOSE 5154/udp
+EXPOSE 5154/tcp
 
 LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
