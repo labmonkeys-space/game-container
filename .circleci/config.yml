@@ -34,9 +34,16 @@ workflows:
     jobs:
       - ioquake3:
           context: "Publishing"
+      - bzflag:
+          context: "Publishing"
 jobs:
   ioquake3:
     executor: build-executor
     steps:
       - make-image:
           workdir: "./ioquake3"
+  bzflag:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./bzflag"
