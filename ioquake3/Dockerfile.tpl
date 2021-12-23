@@ -7,27 +7,28 @@ FROM "${BUILDER_BASE_IMAGE}" as builder
 
 USER root
 
-RUN apt-get update && \
-    # hadolint ignore=DL3008
-    apt-get install -y --no-install-recommends libsdl2-dev
+WORKDIR /root
 
-RUN git clone https://github.com/ioquake/ioq3.git
-RUN cd ioq3 && make release
+RUN apk --no-cache add curl g++ gcc make git sdl2-dev && \
+    git clone https://github.com/ioquake/ioq3.git && \
+    cd ioq3 && make release
 
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
 RUN adduser --system ioq3
 
-COPY --chown=ioq3 --from=builder /home/circleci/project/ioq3/build/release-linux-x86_64 /opt/ioquake3
+COPY --chown=ioq3 --from=builder /root/ioq3/build/release-linux-x86_64 /opt/ioq3
 
 USER ioq3
 
-ENTRYPOINT [ "/opt/ioquake3/ioq3ded.x86_64" ]
+ENTRYPOINT [ "/opt/ioq3/ioq3ded.x86_64" ]
 
 CMD [ "-v" ]
 
 ### Runtime information and not relevant at build time
+
+VOLUME [ "/opt/ioq3/baseq3" ]
 
 EXPOSE 27960/udp
 
