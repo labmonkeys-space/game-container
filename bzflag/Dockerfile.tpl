@@ -4,7 +4,7 @@
 
 FROM "${BASE_IMAGE}"
 
-RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates bzflag-server="${BZFS_VERSION}" && \
+RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates="${CA_CERT_VERSION}" bzflag-server="${BZFS_VERSION}" && \
     rm -rf /var/lib/apt/lists/*
 
 RUN adduser --system bzfs
