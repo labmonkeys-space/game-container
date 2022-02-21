@@ -5,13 +5,12 @@
 # hadolint ignore=DL3006
 FROM "${BUILDER_BASE_IMAGE}" as builder
 
-USER root
-
 WORKDIR /root
 
+# hadolint ignore=DL3018, DL3003
 RUN apk --no-cache add curl g++ gcc make git sdl2-dev && \
     git clone https://github.com/ioquake/ioq3.git && \
-    cd ioq3 && make release
+    cd ioq3 && git checkout ${GIT_COMMIT} && make release
 
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
@@ -32,8 +31,11 @@ VOLUME [ "/opt/ioq3/baseq3" ]
 
 EXPOSE 27960/udp
 
-LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
+LABEL org.opencontainers.image.created="${DATE}" \
+      org.opencontainers.image.description="The ioquake3 community effort to continue supporting/developing id's Quake III Arena" \
+      org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
       org.opencontainers.image.authors="ronny@no42.org" \
-      org.opencontainers.image.licenses="MIT"
+      org.opencontainers.image.licenses="MIT" \
+      io.artifacthub.package.readme-url="https://github.com/labmonkeys-space/game-container/blob/main/ioquake3/README.md"
