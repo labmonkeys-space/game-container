@@ -17,8 +17,6 @@ CMD [ "--help" ]
 
 ### Runtime information and not relevant at build time
 
-VOLUME [ "/opt/ioq3/baseq3" ]
-
 EXPOSE 5154/tcp
 
 LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
