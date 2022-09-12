@@ -1,0 +1,18 @@
+---
+version: '3'
+
+services:
+  bzfs:
+    image: quay.io/labmonkeys/bzfs:2.4.22.b34
+    container_name: bzfs
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 32M
+    volumes:
+      - './bzflag-server.conf:/tmp/bzflag-server.conf'
+    command: [ "-conf" , "/tmp/bzflag-server.conf"]
+    ports:
+      - "5154:5154/tcp"
+      - "5154:5154/udp"

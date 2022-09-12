@@ -1,0 +1,14 @@
+---
+version: '3'
+services:
+  dpmaster:
+    image: quay.io/labmonkeys/dpmaster:2.3-dev.b35
+    container_name: dpmaster
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 16M
+    command: [ "-f", "-v"  ]
+    ports:
+      - "27950:27950/udp"
