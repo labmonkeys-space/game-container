@@ -7,5 +7,5 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.2.b205"
-export GIT_COMMIT="29b0cc3a4d037046eb3247fc04f4b703f6a33452"
+export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.3.b241"
+export GIT_COMMIT="84da6537c418e5cc0f34d86140780c6003496167"
