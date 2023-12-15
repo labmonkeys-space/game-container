@@ -10,4 +10,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
-export GIT_COMMIT="e452b7ac04b04d571089a332a09bc44bc83fbe2e"
+export GIT_COMMIT="972635ea5a3d1057d9a958c2cb1815dff05ab33b"
