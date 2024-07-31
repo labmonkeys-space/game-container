@@ -1,0 +1,15 @@
+---
+services:
+  ioq3:
+    image: quay.io/labmonkeys/ioquake3:20220822.b36
+    container_name: ioq3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 128M
+    command: [ "+set", "dedicated", "2", "+exec", "server.cfg" ]
+    volumes:
+      - "./baseq3:/opt/ioq3/baseq3"
+    ports:
+      - "27960:27960/udp"

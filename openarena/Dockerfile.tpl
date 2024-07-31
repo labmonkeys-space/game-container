@@ -3,7 +3,7 @@
 ###
 
 # hadolint ignore=DL3006
-FROM "${BASE_IMAGE}" AS builder
+FROM "${BASE_IMAGE}" as builder
 
 WORKDIR /root
 
