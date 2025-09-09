@@ -6,4 +6,3 @@ source ../base_images.sh
 export VCS_SOURCE="$(git remote get-url --push origin)"
 export VCS_REVISION="$(git describe --always)"
 export BASE_IMAGE="${OS_ALPINE}"
-

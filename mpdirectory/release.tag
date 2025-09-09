@@ -1,1 +1,1 @@
-dpmaster:2.3-dev.20231215
+mpdirectory:2.3.20250909

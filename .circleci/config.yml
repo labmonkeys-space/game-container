@@ -36,7 +36,7 @@ workflows:
           context: "Publishing"
       - bzflag:
           context: "Publishing"
-      - dpmaster:
+      - mpdirectory:
           context: "Publishing"
 jobs:
   ioquake3:
@@ -49,8 +49,8 @@ jobs:
     steps:
       - make-image:
           workdir: "./bzflag"
-  dpmaster:
+  mpdirectory:
     executor: build-executor
     steps:
       - make-image:
-          workdir: "./dpmaster"
+          workdir: "./mpdirectory"
