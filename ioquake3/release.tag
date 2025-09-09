@@ -1,1 +1,1 @@
-ioquake3:526edd3
+ioquake3:3d8979f

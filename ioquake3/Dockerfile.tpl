@@ -8,20 +8,26 @@ FROM "${BASE_IMAGE}" AS builder
 WORKDIR /root
 
 # hadolint ignore=DL3018, DL3003
-RUN apk --no-cache add curl g++ gcc make git sdl2-dev && \
-    git clone https://github.com/ioquake/ioq3.git && \
-    cd ioq3 && git checkout ${GIT_COMMIT} && make release
+RUN apk --no-cache add cmake git gcc sdl2-dev make musl-dev
+RUN git clone https://github.com/ioquake/ioq3.git
+
+WORKDIR /root/ioq3
+
+RUN git checkout ${GIT_COMMIT}
+RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+RUN cmake --build build
 
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN adduser --system ioq3
+RUN adduser --system ioq3 && \
+    mkdir -p /opt/ioq3
 
-COPY --chown=ioq3 --from=builder /root/ioq3/build/release-linux-x86_64 /opt/ioq3
+COPY --chown=ioq3 --from=builder /root/ioq3/build/Release/ioq3ded /opt/ioq3
 
 USER ioq3
 
-ENTRYPOINT [ "/opt/ioq3/ioq3ded.x86_64" ]
+ENTRYPOINT [ "/opt/ioq3/ioq3ded" ]
 
 CMD [ "-v" ]
 
